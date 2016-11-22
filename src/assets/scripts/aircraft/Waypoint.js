@@ -16,6 +16,8 @@ export default class Waypoint {
      * Initialize Waypoint with empty values, then call the parser
      */
     constructor(data = {}, fms) {
+        this._airportController = window.airportController;
+
         this.altitude = null;
         this.fix      = null;
         this.navmode  = null;
@@ -48,7 +50,7 @@ export default class Waypoint {
         if (data.fix) {
             this.navmode = 'fix';
             this.fix = data.fix;
-            this.location = window.airportController.airport_get().getFixPosition(data.fix);
+            this.location = this._airportController.airport_get().getFixPosition(data.fix);
         }
 
         _forEach(data, (value, key) => {
@@ -60,7 +62,7 @@ export default class Waypoint {
         // for aircraft that don't yet have proper guidance (eg SID/STAR, for example)
         if (!this.navmode) {
             this.navmode = 'heading';
-            const apt = window.airportController.airport_get();
+            const apt = this._airportController.airport_get();
 
             if (data.route.split('.')[0] === apt.icao && this.heading === null) {
                 // aim departure along runway heading

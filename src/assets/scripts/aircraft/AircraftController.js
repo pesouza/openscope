@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle, no-unused-vars, no-undef, global-require */
 import AircraftConflict from './AircraftConflict';
 import AircraftModel from './AircraftModel';
-import AircraftFlightManagementSystem from './AircraftFlightManagementSystem';
 import { speech_say } from '../speech';
 import { abs } from '../math/core';
 import { distance2d } from '../math/distance';
@@ -190,7 +189,13 @@ export default class AircraftController {
                     continue;
                 } else {
                     // TODO: this should go somewhere and not just be instantiated
-                    new AircraftConflict(aircraft, otherAircraft);
+                    new AircraftConflict(
+                        aircraft,
+                        otherAircraft,
+                        this._airportController,
+                        this._gameController,
+                        this._uiController
+                    );
                 }
             }
         }
@@ -356,7 +361,13 @@ export default class AircraftController {
         if (!(this.aircraft.models[icao])) {
             const model = new AircraftModel({
                 icao,
-                url: `assets/aircraft/${icao}.json`
+                url: `assets/aircraft/${icao}.json`,
+                controllerApi: {
+                    airlineController: this._airlineController,
+                    airportController: this._airportController,
+                    gameController: this._gameController,
+                    uiController: this._uiController
+                }
             });
 
             this.aircraft.models[icao] = model;

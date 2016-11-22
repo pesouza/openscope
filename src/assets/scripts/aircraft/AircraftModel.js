@@ -15,6 +15,13 @@ export default class AircraftModel {
      * @param options {object}
      */
     constructor(options = {}) {
+        /**
+         * @property _controllerApi
+         * @type {object}
+         * @private
+         */
+        this._controllerApi = options.controllerApi;
+
         this.loading = true;
         this.loaded = false;
 
@@ -22,7 +29,7 @@ export default class AircraftModel {
         this.name = _get(options, 'name', null);
         this.icao = _get(options, 'icao', null);
         this.engines = null;
-        this.ceiling= null;
+        this.ceiling = null;
         this.weightclass = _get(options, 'weightClass', null);
         this.category = _get(options, 'category', null);
         this._pendingAircraft = [];
@@ -175,7 +182,7 @@ export default class AircraftModel {
      */
     _generateAircraft(options) {
         options.model = this;
-        const aircraft = new AircraftInstanceModel(options);
+        const aircraft = new AircraftInstanceModel(options, this._controllerApi);
 
         prop.aircraft.list.push(aircraft);
 

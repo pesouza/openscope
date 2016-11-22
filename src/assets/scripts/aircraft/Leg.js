@@ -33,6 +33,9 @@ export default class Leg {
      * @constructor
      */
     constructor(data = {}, fms) {
+        this._uiController = window.uiController;
+        this._airportController = window.airportController;
+
         this.route = '[radar vectors]'; // eg 'KSFO.OFFSH9.SXC' or 'FAITH'
         this.type = FP_LEG_TYPE.MANUAL;
         this.waypoints = []; // an array of zlsa.atc.Waypoint objects to follow
@@ -88,16 +91,16 @@ export default class Leg {
             // Generate the waypoints
             if (!rwy) {
                 const isWarning = true;
-                window.uiController.ui_log(`${fms.my_aircraft.getCallsign()} unable to fly SID, we haven't been assigned a departure runway!`, isWarning);
+                this._uiContoller.ui_log(`${fms.my_aircraft.getCallsign()} unable to fly SID, we haven't been assigned a departure runway!`, isWarning);
 
                 return;
             }
 
-            const pairs = window.airportController.airport_get(apt).getSID(sid, exit, rwy);
+            const pairs = this._airportController.airport_get(apt).getSID(sid, exit, rwy);
 
             // Remove the placeholder leg (if present)
             if (fms.my_aircraft.wow() && fms.legs.length > 0
-                && fms.legs[0].route === window.airportController.airport_get().icao && pairs.length > 0
+                && fms.legs[0].route === this._airportController.airport_get().icao && pairs.length > 0
             ) {
                 // remove the placeholder leg, to be replaced below with SID Leg
                 fms.legs.splice(0, 1);
@@ -150,7 +153,7 @@ export default class Leg {
             this.waypoints = [];
 
             // Generate the waypoints
-            const pairs = window.airportController.airport_get(apt).getSTAR(star, entry, rwy);
+            const pairs = this._airportController.airport_get(apt).getSTAR(star, entry, rwy);
 
             // for each fix/restr pair
             for (let i = 0; i < pairs.length; i++) {
@@ -192,7 +195,7 @@ export default class Leg {
             const airway = data.route.split('.')[1];
             const end = data.route.split('.')[2];
             // Verify airway is valid
-            const apt = window.airportController.airport_get();
+            const apt = this._airportController.airport_get();
 
             if (!_has(apt, 'airways') || !_has(apt.airways, 'airway')) {
                 log(`Airway ${airway} not defined at ${apt.icao}`, LOG.WARNING);

@@ -19,10 +19,19 @@ const MIN_VERTICAL_SEPARATION_FT = 1000;
  * @class AircraftConflict
  */
 export default class AircraftConflict {
-    constructor(first, second) {
-        this._airportController = window.airportController;
-        this._gameController = window.gameController;
-        this._uiController = window.uiController;
+    /**
+     * @for AircraftConflict
+     * @constructor
+     * @param first
+     * @param second
+     * @param airportController {AirportController}
+     * @param gameController {GameController}
+     * @param uiController {UiController}
+     */
+    constructor(first, second, airportController, gameController, uiController) {
+        this._airportController = airportController;
+        this._gameController = gameController;
+        this._uiController = uiController;
 
         this.aircraft = [first, second];
         this.distance = vlen(vsub(first.position, second.position));

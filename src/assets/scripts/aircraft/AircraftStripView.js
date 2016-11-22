@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import _uniqueId from 'lodash/uniqueId';
 import { round } from '../math/core';
 import {
     FLIGHT_CATEGORY,
@@ -6,14 +7,6 @@ import {
     WAYPOINT_NAV_MODE
 } from './AircraftInstanceModel';
 import { SELECTORS } from '../constants/selectors';
-
-/**
- * unique id for each AircraftStripView instance
- *
- * @property ID
- * @type {number}
- */
-let ID = 0;
 
 /**
  * Root html element
@@ -46,8 +39,11 @@ export default class AircraftStripView {
      * @param aircraftInstanceModel {AircraftInstanceModel}
      */
     constructor(callsign = '', aircraftInstanceModel) {
+        this._inputController = window.inputController;
+        this._uiController = window.uiController;
+
         // TODO: change to use lodash _uniqueId
-        this._id = ID++;
+        this._id = _uniqueId();
 
         this.$element = null;
         this.$callsign = null;
@@ -445,7 +441,7 @@ export default class AircraftStripView {
      * @param event {jquery event}
      */
     onClickHandler = (event) => {
-        window.inputController.input_select(this.callsign);
+        this._inputController.input_select(this.callsign);
     };
 
     /**
@@ -456,8 +452,8 @@ export default class AircraftStripView {
      * @param  event {jquery event}
      */
     onDoubleClickHandler = (event) => {
-        prop.canvas.panX = 0 - round(window.uiController.km_to_px(event.data.position[0]));
-        prop.canvas.panY = round(window.uiController.km_to_px(event.data.position[1]));
+        prop.canvas.panX = 0 - round(this._uiController.km_to_px(event.data.position[0]));
+        prop.canvas.panY = round(this._uiController.km_to_px(event.data.position[1]));
         prop.canvas.dirty = true;
     };
 }

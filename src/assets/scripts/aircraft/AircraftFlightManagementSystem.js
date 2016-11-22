@@ -55,8 +55,8 @@ const WAYPOINT_WITHIN_LEG = 1;
  */
 export default class AircraftFlightManagementSystem {
     constructor(options) {
-        this._aircraftController = window.aircraftController;
-        this._airportController = window.airportController;
+        this._aircraftController = options.controllerApi.aircraftController;
+        this._airportController = options.controllerApi.airportController;
 
         this.my_aircrafts_eid = options.aircraft.eid;
         this.my_aircraft = options.aircraft;
