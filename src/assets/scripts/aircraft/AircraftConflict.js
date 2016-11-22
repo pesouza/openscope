@@ -20,16 +20,17 @@ const MIN_VERTICAL_SEPARATION_FT = 1000;
  */
 export default class AircraftConflict {
     constructor(first, second) {
+        this._airportController = window.airportController;
+        this._gameController = window.gameController;
+        this._uiController = window.uiController;
+
         this.aircraft = [first, second];
         this.distance = vlen(vsub(first.position, second.position));
         this.distance_delta = 0;
         this.altitude = abs(first.altitude - second.altitude);
-
         this.collided = false;
-
         this.conflicts = {};
         this.violations = {};
-
         this.aircraft[0].addConflict(this, second);
         this.aircraft[1].addConflict(this, first);
 
@@ -96,7 +97,7 @@ export default class AircraftConflict {
         this.checkRunwayCollision();
 
         // Ignore aircraft below about 1000 feet
-        const airportElevation = window.airportController.airport_get().elevation;
+        const airportElevation = this._airportController.airport_get().elevation;
         if (((this.aircraft[0].altitude - airportElevation) < 990) ||
             ((this.aircraft[1].altitude - airportElevation) < 990)) {
             return;
@@ -104,8 +105,8 @@ export default class AircraftConflict {
 
 
         // Ignore aircraft in the first minute of their flight
-        if ((window.gameController.game_time() - this.aircraft[0].takeoffTime < 60) ||
-            (window.gameController.game_time() - this.aircraft[0].takeoffTime < 60)) {
+        if ((this._gameController.game_time() - this.aircraft[0].takeoffTime < 60) ||
+            (this._gameController.game_time() - this.aircraft[0].takeoffTime < 60)) {
             return;
         }
 
@@ -135,15 +136,15 @@ export default class AircraftConflict {
         ) {
             this.collided = true;
             const isWarning = true;
-            window.uiController.ui_log(`${this.aircraft[0].getCallsign()} collided with ${this.aircraft[1].getCallsign()}`, isWarning);
+            this._uiController.ui_log(`${this.aircraft[0].getCallsign()} collided with ${this.aircraft[1].getCallsign()}`, isWarning);
 
-            window.gameController.events_recordNew(GAME_EVENTS.COLLISION);
+            this._gameController.events_recordNew(GAME_EVENTS.COLLISION);
             this.aircraft[0].hit = true;
             this.aircraft[1].hit = true;
 
             // If either are in runway queue, remove them from it
-            for (const i in window.airportController.airport_get().runways) {
-                const runway = window.airportController.airport_get().runways[i];
+            for (const i in this._airportController.airport_get().runways) {
+                const runway = this._airportController.airport_get().runways[i];
 
                 // Primary End of Runway
                 runway[0].removeQueue(this.aircraft[0], true);
@@ -162,7 +163,7 @@ export default class AircraftConflict {
     checkRunwayCollision() {
         // Check if the aircraft are on a potential collision course
         // on the runway
-        const airport = window.airportController.airport_get();
+        const airport = this._airportController.airport_get();
 
         // TODO: this logic block needs its own method.
         // Check for the same runway, different ends and under about 6 miles
@@ -174,7 +175,7 @@ export default class AircraftConflict {
         ) {
             if (!this.conflicts.runwayCollision) {
                 this.conflicts.runwayCollision = true;
-                window.uiController.ui_log(
+                this._uiController.ui_log(
                     `${this.aircraft[0].getCallsign()} appears on a collision course with` +
                     ` ${this.aircraft[1].getCallsign()} on the same runway"`,
                     isWarning
@@ -209,7 +210,7 @@ export default class AircraftConflict {
 
         // Established on precision guided approaches && both are following different instrument approaches
         if ((a1.isPrecisionGuided() && a2.isPrecisionGuided()) && (a1.rwy_arr !== a2.rwy_arr)) {
-            const runwayRelationship = window.airportController.airport_get().metadata.rwy[a1.rwy_arr][a2.rwy_arr];
+            const runwayRelationship = this._airportController.airport_get().metadata.rwy[a1.rwy_arr][a2.rwy_arr];
 
             // Determine applicable lateral separation minima for conducting
             // parallel simultaneous dependent approaches on these runways:
