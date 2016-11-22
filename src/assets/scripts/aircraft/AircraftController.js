@@ -23,6 +23,11 @@ export default class AircraftController {
      * @constructor
      */
     constructor() {
+        this._airlineController = window.airlineController;
+        this._airportController = window.airportController;
+        this._gameController = window.gameController;
+        this._uiController = window.uiController;
+
         this.aircraft = aircraft;
         this.aircraft.models = {};
         this.aircraft.callsigns = [];
@@ -39,7 +44,7 @@ export default class AircraftController {
      */
     aircraft_generate_callsign(airlineName) {
         // TODO: this should live in the AirlineModel
-        const airline = window.airlineController.airline_get(airlineName);
+        const airline = this._airlineController.airline_get(airlineName);
 
         if (!airline) {
             console.warn(`Airline not found: ${airlineName}`);
@@ -81,7 +86,7 @@ export default class AircraftController {
      * @param options {object}
      */
     aircraft_new(options) {
-        const airline = window.airlineController.airline_get(options.airline);
+        const airline = this._airlineController.airline_get(options.airline);
 
         return airline.generateAircraft(options);
     }
@@ -124,7 +129,7 @@ export default class AircraftController {
      * @param factor
      */
     aircraft_visible(aircraft, factor = 1) {
-        return vlen(aircraft.position) < window.airportController.airport_get().ctr_radius * factor;
+        return vlen(aircraft.position) < this._airportController.airport_get().ctr_radius * factor;
     }
 
     /**
@@ -198,18 +203,18 @@ export default class AircraftController {
             if (aircraft.isStopped() && aircraft.category === 'arrival') {
                 aircraft.scoreWind('landed');
 
-                window.uiController.ui_log(`${aircraft.getCallsign()} switching to ground, good day`);
+                this._uiController.ui_log(`${aircraft.getCallsign()} switching to ground, good day`);
                 speech_say([
                     { type: 'callsign', content: aircraft },
                     { type: 'text', content: ', switching to ground, good day' }
                 ]);
 
-                window.gameController.events_recordNew(GAME_EVENTS.ARRIVAL);
+                this._gameController.events_recordNew(GAME_EVENTS.ARRIVAL);
                 remove = true;
             }
 
             if (aircraft.hit && aircraft.wow()) {
-                window.uiController.ui_log(`Lost radar contact with ${aircraft.getCallsign()}`);
+                this._uiController.ui_log(`Lost radar contact with ${aircraft.getCallsign()}`);
                 speech_say([
                     { type: 'callsign', content: aircraft },
                     { type: 'text', content: ', radar contact lost' }
