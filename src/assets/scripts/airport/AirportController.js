@@ -44,9 +44,9 @@ export default class AirportController {
         prop.airport = airport;
 
         this.airlineController = new AirlineController();
-        this.aircraftController = new AircraftController();
-
         window.airlineController = this.airlineController;
+
+        this.aircraftController = new AircraftController();
         window.aircraftController = this.aircraftController;
     }
 

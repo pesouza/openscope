@@ -55,6 +55,9 @@ const WAYPOINT_WITHIN_LEG = 1;
  */
 export default class AircraftFlightManagementSystem {
     constructor(options) {
+        this._aircraftController = window.aircraftController;
+        this._airportController = window.airportController;
+
         this.my_aircrafts_eid = options.aircraft.eid;
         this.my_aircraft = options.aircraft;
         this.legs = [];
@@ -78,7 +81,7 @@ export default class AircraftFlightManagementSystem {
         if (options.aircraft.category === 'arrival') {
             this.prependLeg({ route: 'KDBG' });
         } else if (options.aircraft.category === 'departure') {
-            this.prependLeg({ route: window.airportController.airport_get().icao });
+            this.prependLeg({ route: this._airportController.airport_get().icao });
         }
 
         this.update_fp_route();
@@ -427,7 +430,7 @@ export default class AircraftFlightManagementSystem {
     followSID(route) {
         for (let i = 0; i < this.legs.length; i++) {
             // sid assigned after taking off without SID
-            if (this.legs[i].route === window.airportController.airport_get().icao) {
+            if (this.legs[i].route === this._airportController.airport_get().icao) {
                 // remove the manual departure leg
                 this.legs.splice(i, 1);
             } else if (this.legs[i].type === FP_LEG_TYPE.SID) {
@@ -444,7 +447,7 @@ export default class AircraftFlightManagementSystem {
         });
 
         this.setAll({
-            altitude:  Math.max(window.airportController.airport_get().initial_alt, this.my_aircraft.altitude)
+            altitude:  Math.max(this._airportController.airport_get().initial_alt, this.my_aircraft.altitude)
         });
     }
 
@@ -472,7 +475,7 @@ export default class AircraftFlightManagementSystem {
         // Format the user's input
         let route = [];
         // const ap = airport_get;
-        const fixOK = window.airportController.airport_get().getFix;
+        const fixOK = this._airportController.airport_get().getFix;
 
         if (data.indexOf(' ') !== -1) {
             return; // input can't contain spaces
@@ -552,13 +555,13 @@ export default class AircraftFlightManagementSystem {
                 // is an instrument procedure
                 pieces = route[i].split('.');
 
-                if (Object.keys(window.airportController.airport_get().sids).indexOf(pieces[1]) > -1) {
+                if (Object.keys(this._airportController.airport_get().sids).indexOf(pieces[1]) > -1) {
                     // it's a SID!
                     legs.push(new Leg({ type: FP_LEG_TYPE.SID, route: route[i] }, this));
-                } else if (Object.keys(window.airportController.airport_get().stars).indexOf(pieces[1]) > -1) {
+                } else if (Object.keys(this._airportController.airport_get().stars).indexOf(pieces[1]) > -1) {
                     // it's a STAR!
                     legs.push(new Leg({ type: FP_LEG_TYPE.STAR, route: route[i] }, this));
-                } else if (Object.keys(window.airportController.airport_get().airways).indexOf(pieces[1]) > -1) {
+                } else if (Object.keys(this._airportController.airport_get().airways).indexOf(pieces[1]) > -1) {
                     // it's an airway!
                     legs.push(new Leg({ type: FP_LEG_TYPE.AWY, route: route[i] }, this));
                 }
@@ -631,7 +634,7 @@ export default class AircraftFlightManagementSystem {
         // FIXME: why keep a reference to the aircraft id if we just get it from the aircraftController? Also,
         // if this bit of logic is simply getting the aircraft instance, why not use `this.my_aircraft` for
         // the whole thing?
-        const retval = this.my_aircraft.runSID([window.aircraftController.aircraft_get(this.my_aircrafts_eid).destination]);
+        const retval = this.my_aircraft.runSID([this._aircraftController.aircraft_get(this.my_aircrafts_eid).destination]);
         // TODO: this method could simply return the logic being set to `ok`
         const ok = !(Array.isArray(retval) && retval[0] === 'fail');
 
@@ -671,7 +674,7 @@ export default class AircraftFlightManagementSystem {
                 if (altitude.indexOf('+') !== -1) {
                     // at-or-above altitude restriction
                     minAlt = parseInt(altitude.replace('+', ''), 10) * 100;
-                    alt = Math.min(window.airportController.airport_get().ctr_ceiling, cruise_alt);
+                    alt = Math.min(this._airportController.airport_get().ctr_ceiling, cruise_alt);
                 } else if (altitude.indexOf('-') !== -1) {
                     maxAlt = parseInt(altitude.replace('-', ''), 10) * 100;
                     // climb as high as restrictions permit
@@ -681,7 +684,7 @@ export default class AircraftFlightManagementSystem {
                     alt = parseInt(altitude, 10) * 100;
                 }
             } else {
-                alt = Math.min(window.airportController.airport_get().ctr_ceiling, cruise_alt);
+                alt = Math.min(this._airportController.airport_get().ctr_ceiling, cruise_alt);
             }
 
             wp[i].altitude = alt; // add altitudes to wp
@@ -905,7 +908,7 @@ export default class AircraftFlightManagementSystem {
      * Return this fms's parent aircraft
      */
     my_aircraft() {
-        return window.aircraftController.aircraft_get(this.my_aircrafts_eid);
+        return this._aircraftController.aircraft_get(this.my_aircrafts_eid);
     }
 
     /**
@@ -988,7 +991,7 @@ export default class AircraftFlightManagementSystem {
             return null;
         }
 
-        const { icao } = window.airportController.airport_get();
+        const { icao } = this._airportController.airport_get();
 
         return `${this.following.star}.${icao.toUpperCase()}`;
     }
