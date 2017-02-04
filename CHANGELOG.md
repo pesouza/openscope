@@ -13,7 +13,7 @@
 
 
 ### Features
-
+- Adds Halifax Stanfield International Airport (based off AIRAC 1613) [#106](https://github.com/openscope/openscope/issues/106)
 
 
 
