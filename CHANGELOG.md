@@ -13,7 +13,7 @@
 
 
 ### Features
-
+- Brussels Airport has been updated as per AMDT 002/2017 of the Belgium & Luxembourg AIP. [#178](https://github.com/openscope/openscope/issues/178)
 
 
 
