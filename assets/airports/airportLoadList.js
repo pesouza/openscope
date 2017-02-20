@@ -61,7 +61,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         },
         {
             icao: 'eddm',
-            level: 'beginner',
+            level: 'hard',
             name: 'Franz Josef Strauß International Airport',
             wip: true
         },
@@ -291,6 +291,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             icao: 'rjbb',
             level: 'hard',
             name: 'Osaka Kansai International Airport',
+            wip: true
+        },
+        {
+            icao: 'rjaa',
+            level: 'hard',
+            name: 'Tokyo Narita International Airport',
             wip: true
         },
         {
