@@ -619,7 +619,7 @@
             "category": "arrival",
             "route": "NIVNU.UNOKO25S.EDDF",
             "altitude": 32000,
-            "speed": 350,
+            "speed": 320,
             "method": "random",
             "rate": 13,
             "airlines": [
@@ -639,7 +639,7 @@
             "category": "arrival",
             "route": "LIPMI.ROLIS25N.EDDF",
             "altitude": 31000,
-            "speed": 350,
+            "speed": 320,
             "method": "random",
             "rate": 13,
             "airlines": [
@@ -661,7 +661,7 @@
             "category": "arrival",
             "route": "GAPLA.KERAX25N.EDDF",
             "altitude": 21000,
-            "speed": 350,
+            "speed": 320,
             "method": "random",
             "rate": 13,
             "airlines": [
@@ -688,7 +688,7 @@
             "category": "arrival",
             "route": "KOVAN.PSA25S.EDDF",
             "altitude": 32000,
-            "speed": 350,
+            "speed": 320,
             "method": "random",
             "rate": 13,
             "airlines": [
