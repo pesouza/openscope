@@ -156,6 +156,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             wip: true
         },
         {
+            icao: 'kcvg',
+            level: 'beginner',
+            name: 'Cincinnati-Northern Kentucky Int\'l Airport',
+            wip: true
+        },
+        {
             icao: 'kdca',
             level: 'medium',
             name: 'Reagan National Airport',

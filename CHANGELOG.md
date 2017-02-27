@@ -14,6 +14,7 @@
 
 ### Features
 - Enumerate magic number in RunwayModel [#269](https://github.com/openscope/openscope/issues/269)
+- Added new airport: "KCVG - Cincinnati-Northern Kentucky International Airport" [#272](https://github.com/openscope/openscope/pull/275)
 
 
 
