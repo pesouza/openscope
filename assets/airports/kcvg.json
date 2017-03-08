@@ -546,6 +546,7 @@
                 "36C": ["BAMGE", "FIDEK", "ZETIP"],
                 "36L": ["BAMGE", "FIDEK", "ZETIP"],
                 "36R": ["BAMGE", "FIDEK", "ZETIP"]
+            }
         },
         "GAVNN4": {
             "icao": "GAVNN4",
@@ -940,7 +941,7 @@
             "destination": "KCVG",
             "category": "arrival",
             "route": "JOT.CEGRM4.KCVG",
-            "altitude": 29000,
+            "altitude": 30000,
             "speed": 300,
             "method": "random",
             "rate": 0.7,
@@ -6789,5 +6790,4 @@
             ["N039d02m39.029","W084d11m23.466","N039d02m38.462","W084d11m17.724"]
         ]
     }
-}
 }
