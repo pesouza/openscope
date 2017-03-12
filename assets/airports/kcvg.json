@@ -187,6 +187,30 @@
             ]
         },
         {
+            "name": "HILLTOP",
+            "height": "18000ft",
+            "coordinates": [
+                ["N040d59m00.000", "W086d43m00.000"],
+                ["N040d57m30.000", "W086d26m30.000"],
+                ["N040d53m00.000", "W086d09m00.000"],
+                ["N040d35m30.000", "W086d09m30.000"],
+                ["N040d25m00.000", "W086d14m00.000"],
+                ["N040d23m00.000", "W086d26m00.000"],
+                ["N040d40m30.000", "W086d53m00.000"]
+            ]
+        },
+        {
+            "name": "R-3401A/B",
+            "height": "40000ft",
+            "coordinates": [
+                ["N039d22m00.000", "W086d06m40.000"],
+                ["N039d22m00.000", "W085d59m30.000"],
+                ["N039d12m30.000", "W085d59m30.000"],
+                ["N039d12m30.000", "W086d09m50.000"],
+                ["N039d19m00.000", "W086d11m20.000"]
+            ]
+        },
+        {
             "name": "R-3403A",
             "height": "43000ft",
             "coordinates": [
@@ -211,17 +235,7 @@
             ]
         },
         {
-            "name": "R-3701A",
-            "height": "40000ft",
-            "coordinates": [
-                ["N039d21m30.000", "W086d06m00.000"],
-                ["N039d21m30.000", "W085d59m30.000"],
-                ["N039d13m00.000", "W085d59m30.000"],
-                ["N039d13m00.000", "W086d06m00.000"]
-            ]
-        },
-        {
-            "name": "R-3704B",
+            "name": "R-3704A/B",
             "height": "20000ft",
             "coordinates": [
                 ["N037d59m00.000", "W085d45m00.000"],
@@ -334,11 +348,11 @@
                 "36L": ["CIGMA", "HOMIX"],
                 "36R": [["HAGSS", "A14+"], "HOMIX"]
             },
-            "body": ["GIPLE", "HOBNO", ["RHOMM", "A170+"]],
+            "body": ["GIPLE", "HOBNO", "RHOMM"],
             "exitPoints": {
-                "BKW": [["MISSN", "A230+"], "JODUB", "BKW"],
-                "HVQ": [["MISSN", "A230+"], "JODUB", "HVQ"],
-                "JODUB": [["MISSN", "A230+"], "JODUB"],
+                "BKW": ["MISSN", "JODUB", "BKW"],
+                "HVQ": ["MISSN", "JODUB", "HVQ"],
+                "JODUB": ["MISSN", "JODUB"],
                 "YRK": ["YRK"]
             },
             "draw": [
@@ -360,7 +374,7 @@
         },
         "HAGOL4": {
             "icao": "HAGOL4",
-            "name": "Hagol Four",
+            "name": "Hagle Four",
             "rwy": {
                 "18C": [["FLOEE", "A14+"], "ZUGLU", "MIPIE", "HERMM", "AMMOT"],
                 "18L": ["CAMUM", "ANTEO", "CODKO", "JBETH", "FOPAS"],
@@ -420,7 +434,7 @@
         },
         "KENLN4": {
             "icao": "KENLN4",
-            "name": "Kenlin Four",
+            "name": "Ken Lin Four",
             "rwy": {
                 "18C": [["FLOEE", "A14+"], "FEBLU"],
                 "18L": ["CAMUM", "ZEGUL", "HUNRU"],
@@ -447,7 +461,7 @@
         },
         "LOVEY6": {
             "icao": "LOVEY6",
-            "name": "Lovey Six",
+            "name": "Lovie Six",
             "rwy": {
                 "18C": [["FLOEE", "A14+"], "ZUGLU", "MIPIE"],
                 "18L": ["CAMUM", "FEBLU", "GUMRE"],
@@ -486,7 +500,7 @@
                 "36L": ["CIGMA", "HOMIX", "CERPO"],
                 "36R": [["HAGSS", "A14+"], "HOMIX", "CERPO"]
             },
-            "body": [["WADAL", "A80+"], ["FARUM", "A130+"], ["CIVLO", "A230-"], "ROCKT"],
+            "body": ["WADAL", "FARUM", "CIVLO", "ROCKT"],
             "exitPoints": {
                 "TVT": ["TVT"],
                 "AHTIY": ["CADRE", "AHTIY"]
@@ -532,20 +546,20 @@
             "icao": "CEGRM4",
             "name": "Cegram Four",
             "entryPoints": {
-                "JOT": ["JOT", ["CADIZ", "A290"], ["FATOX", "A240"]]
+                "JOT": ["JOT"]
             },
-            "body": [["BVT", "A240"], ["TORIO", "A240"], ["MACES", "A190"], ["VHP", "A140"], ["SHB", "A140"], ["CEGRM", "A110"], "BCATT"],
+            "body": [["CADIZ", "A290|S280"], ["FATOX", "A270|S280"], ["BVT", "A260|S280"], ["TORIO", "A240|S280"], ["MACES", "A190|S250"], ["VHP", "A140|S250"], ["SHB", "A140|S250"], ["CEGRM", "A110|S200"], "BCATT", "BAMGE"],
             "rwy": {
-                "09": ["BAMGE"],
-                "18C": ["BAMGE"],
-                "18L": ["BAMGE"],
-                "18R": ["BAMGE"],
-                "27": ["BAMGE"],
-                "36C": ["BAMGE", "FIDEK", "ZETIP"],
-                "36L": ["BAMGE", "FIDEK", "ZETIP"],
-                "36R": ["BAMGE", "FIDEK", "ZETIP"]
+                "09":  [],
+                "18C": [],
+                "18L": [],
+                "18R": [],
+                "27":  [],
+                "36C": ["FIDEK", "ZETIP"],
+                "36L": ["FIDEK", "ZETIP"],
+                "36R": ["FIDEK", "ZETIP"]
             },
-            "draw": ["JOT", "CADIZ", "FATOX", "BVT", "TORIO", "MACES", "VHP", "SHB", "CEGRM", "BCATT", "BAMGE", "FIDEK", "ZETIP"]
+            "draw": ["JOT*", "CADIZ", "FATOX", "BVT", "TORIO", "MACES", "VHP", "SHB", "CEGRM", "BCATT", "BAMGE", "FIDEK", "ZETIP"]
         },
         "GAVNN4": {
             "icao": "GAVNN4",
@@ -553,18 +567,18 @@
             "entryPoints": {
                 "HNN": ["HNN"]
             },
-            "body": [["JAYKB", "A240"], ["BRUSH", "A100"], ["GAVNN", "A100"], ["KNEDY", "A100"]],
+            "body": [["JAYKB", "A240|S280"], ["BRUSH", "A180|S250"], ["GAVNN", "A100|S200"], "KNEDY", "AAJAY"],
             "rwy": {
-                "09": ["AAJAY"],
-                "18C": ["AAJAY", "BACAS", "OGIRE"],
-                "18L": ["AAJAY", "BACAS", "OGIRE"],
-                "18R": ["AAJAY", "BACAS", "OGIRE"],
-                "27": ["AAJAY"],
-                "36C": ["AAJAY"],
-                "36L": ["AAJAY"],
-                "36R": ["AAJAY"]
+                "09":  [],
+                "18C": ["BACAS", "OGIRE"],
+                "18L": ["BACAS", "OGIRE"],
+                "18R": ["BACAS", "OGIRE"],
+                "27":  [],
+                "36C": [],
+                "36L": [],
+                "36R": []
             },
-            "draw": ["HNN", "JAYKB", "BRUSH", "GAVNN", "KNEDY", "AAJAY", "BACAS", "OGIRE"]
+            "draw": ["HNN*", "JAYKB", "BRUSH", "GAVNN", "KNEDY", "AAJAY", "BACAS", "OGIRE"]
         },
         "JAKIE4": {
             "icao": "JAKIE4",
@@ -572,18 +586,18 @@
             "entryPoints": {
                 "VXV": ["VXV"]
             },
-            "body": [["ARTUR", "A190"], ["CHEDA", "A100"], ["ODABE", "A100"], ["HAYZL", "A100"], ["JAKIE", "A100"]],
+            "body": [["ARTUR", "A270|S280"], ["CHEDA", "A210|S280"], ["ODABE", "A170|S250"], ["HAYZL", "A140|S230"], ["JAKIE", "A100|S200"], "FLM", "FIDEK"],
             "rwy": {
-                "09":  ["FLM"],
-                "18C": ["FLM", "FIDEK", "BAMGE", "AGEBE"],
-                "18L": ["FLM", "FIDEK", "BAMGE", "AGEBE"],
-                "18R": ["FLM", "FIDEK", "BAMGE", "AGEBE"],
-                "27":  ["FLM"],
-                "36C": ["FLM"],
-                "36L": ["FLM"],
-                "36R": ["FLM"]
+                "09":  [],
+                "18C": ["BAMGE", "AGEBE"],
+                "18L": ["BAMGE", "AGEBE"],
+                "18R": ["BAMGE", "AGEBE"],
+                "27":  [],
+                "36C": [],
+                "36L": [],
+                "36R": []
             },
-            "draw": ["VXV", "ARTUR", "CHEDA", "ODABE", "HAYZL", "JAKIE", "FLM", "FIDEK", "BAMGE", "AGEBE"]
+            "draw": ["VXV*", "ARTUR", "CHEDA", "ODABE", "HAYZL", "JAKIE", "FLM", "FIDEK", "BAMGE", "AGEBE"]
         },
         "SARGO3": {
             "icao": "SARGO3",
@@ -591,18 +605,18 @@
             "entryPoints": {
                 "PXV": ["PXV"]
             },
-            "body": [["JRICO", "A140"], ["APCOT", "A100"], ["JKUKA", "A100"], ["SARGO", "A100"], ["TYOTA", "A100"]],
+            "body": [["JRICO", "A260|S280"], ["APCOT", "A210|S280"], ["JKUKA", "A180|S250"], ["SARGO", "A140|S250"], ["TYOTA", "A100|S200"], "FIDEK"],
             "rwy": {
-                "09": ["FIDEK"],
-                "18C": ["FIDEK", "BAMGE", "AGEBE"],
-                "18L": ["FIDEK", "BAMGE", "AGEBE"],
-                "18R": ["FIDEK", "BAMGE", "AGEBE"],
-                "27": ["FIDEK"],
-                "36C": ["FIDEK"],
-                "36L": ["FIDEK"],
-                "36R": ["FIDEK"]
+                "09":  [],
+                "18C": ["BAMGE", "AGEBE"],
+                "18L": ["BAMGE", "AGEBE"],
+                "18R": ["BAMGE", "AGEBE"],
+                "27":  [],
+                "36C": [],
+                "36L": [],
+                "36R": []
             },
-            "draw": ["PXV", "JRICO", "APCOT", "JKUKA", "SARGO", "TYOTA", "FIDEK", "BAMGE", "AGEBE"]
+            "draw": ["PXV*", "JRICO", "APCOT", "JKUKA", "SARGO", "TYOTA", "FIDEK", "BAMGE", "AGEBE"]
         },
         "TIGRR2": {
             "icao": "TIGRR2",
@@ -610,18 +624,18 @@
             "entryPoints": {
                 "CTW": ["CTW"]
             },
-            "body": [["APE", "A240"], ["BOWRR", "A240"], ["ORLEE", "A160"], ["HEDEE", "A140"], ["JARSO", "A130"], ["TIGRR", "A110"], "CHARZ"],
+            "body": [["APE", "A240"], ["BOWRR", "A240"], ["ORLEE", "A160"], ["HEDEE", "A140"], ["JARSO", "A130"], ["TIGRR", "A110"], "CHARZ", "BACAS"],
             "rwy": {
-                "09": ["BACAS"],
-                "18C": ["BACAS"],
-                "18L": ["BACAS"],
-                "18R": ["BACAS"],
-                "27": ["BACAS"],
-                "36C": ["BACAS", "HANUT", "HAVLO"],
-                "36L": ["BACAS", "HANUT", "HAVLO"],
-                "36R": ["BACAS", "HANUT", "HAVLO"]
+                "09":  [],
+                "18C": [],
+                "18L": [],
+                "18R": [],
+                "27":  [],
+                "36C": ["HANUT", "HAVLO"],
+                "36L": ["HANUT", "HAVLO"],
+                "36R": ["HANUT", "HAVLO"]
             },
-            "draw": ["CTW", "APE", "BOWRR", "ORLEE", "HEDEE", "JARSO", "TIGRR", "CHARZ", "BACAS", "HANUT", "HAVLO"]
+            "draw": ["CTW*", "APE", "BOWRR", "ORLEE", "HEDEE", "JARSO", "TIGRR", "CHARZ", "BACAS", "HANUT", "HAVLO"]
         }
     },
     "spawnPatterns": [
@@ -633,7 +647,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 0.7,
+            "rate": 1,
             "airlines": [
                 ["dal", 51],
                 ["aal", 17],
@@ -650,7 +664,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 0.7,
+            "rate": 1,
             "airlines": [
                 ["dal", 51],
                 ["aal", 17],
@@ -667,7 +681,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 0.7,
+            "rate": 1,
             "airlines": [
                 ["dal", 51],
                 ["aal", 17],
@@ -684,7 +698,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 0.7,
+            "rate": 1,
             "airlines": [
                 ["dal", 51],
                 ["aal", 17],
@@ -701,7 +715,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 0.7,
+            "rate": 1,
             "airlines": [
                 ["dal", 51],
                 ["aal", 17],
@@ -718,7 +732,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 0.7,
+            "rate": 1,
             "airlines": [
                 ["dal", 51],
                 ["aal", 17],
@@ -735,7 +749,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 0.7,
+            "rate": 1,
             "airlines": [
                 ["dal", 51],
                 ["aal", 17],
@@ -752,7 +766,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 0.7,
+            "rate": 1,
             "airlines": [
                 ["dal", 51],
                 ["aal", 17],
@@ -769,7 +783,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 0.7,
+            "rate": 1,
             "airlines": [
                 ["dal", 51],
                 ["aal", 17],
@@ -786,7 +800,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 0.7,
+            "rate": 1,
             "airlines": [
                 ["dal", 51],
                 ["aal", 17],
@@ -803,7 +817,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 0.7,
+            "rate": 1,
             "airlines": [
                 ["dal", 51],
                 ["aal", 17],
@@ -820,7 +834,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 0.7,
+            "rate": 1,
             "airlines": [
                 ["dal", 51],
                 ["aal", 17],
@@ -837,7 +851,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 0.7,
+            "rate": 1,
             "airlines": [
                 ["dal", 51],
                 ["aal", 17],
@@ -854,7 +868,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 0.7,
+            "rate": 1,
             "airlines": [
                 ["dal", 51],
                 ["aal", 17],
@@ -871,7 +885,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 0.7,
+            "rate": 1,
             "airlines": [
                 ["dal", 51],
                 ["aal", 17],
@@ -888,7 +902,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 0.7,
+            "rate": 1,
             "airlines": [
                 ["dal", 51],
                 ["aal", 17],
@@ -905,7 +919,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 0.7,
+            "rate": 1,
             "airlines": [
                 ["dal", 51],
                 ["aal", 17],
@@ -922,7 +936,7 @@
             "altitude": 30000,
             "speed": 300,
             "method": "random",
-            "rate": 0.7,
+            "rate": 2,
             "airlines": [
                 ["dal", 51],
                 ["aal", 17],
@@ -936,10 +950,10 @@
             "destination": "KCVG",
             "category": "arrival",
             "route": "HNN.GAVNN4.KCVG",
-            "altitude": 20000,
+            "altitude": 30000,
             "speed": 300,
             "method": "random",
-            "rate": 0.7,
+            "rate": 2,
             "airlines": [
                 ["dal", 51],
                 ["aal", 17],
@@ -953,10 +967,10 @@
             "destination": "KCVG",
             "category": "arrival",
             "route": "VXV.JAKIE4.KCVG",
-            "altitude": 20000,
+            "altitude": 30000,
             "speed": 300,
             "method": "random",
-            "rate": 0.7,
+            "rate": 2,
             "airlines": [
                 ["dal", 51],
                 ["aal", 17],
@@ -970,10 +984,10 @@
             "destination": "KCVG",
             "category": "arrival",
             "route": "PXV.SARGO3.KCVG",
-            "altitude": 21000,
+            "altitude": 30000,
             "speed": 300,
             "method": "random",
-            "rate": 0.7,
+            "rate": 2,
             "airlines": [
                 ["dal", 51],
                 ["aal", 17],
@@ -987,10 +1001,10 @@
             "destination": "KCVG",
             "category": "arrival",
             "route": "CTW.TIGRR2.KCVG",
-            "altitude": 24000,
+            "altitude": 30000,
             "speed": 300,
             "method": "random",
-            "rate": 0.7,
+            "rate": 2,
             "airlines": [
                 ["dal", 51],
                 ["aal", 17],

@@ -157,7 +157,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         },
         {
             icao: 'kcvg',
-            level: 'beginner',
+            level: 'medium',
             name: 'Cincinnati-Northern Kentucky Int\'l Airport',
             wip: true
         },
